@@ -1,0 +1,141 @@
+﻿@model PortalMaggieCard.Areas.MaggiemCard.Models.OrderView
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+<div>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p><strong>Success: </strong>@TempData["Success"].ToString()</p>
+        </div>
+    }
+    @if (TempData["Fail"] != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p><strong>Fail: </strong>@TempData["Fail"].ToString()</p>
+        </div>
+    }
+    @if (TempData["Alert"] != null)
+    {
+        <div class="alert alert-info alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p><strong>Alert: </strong>@TempData["Alert"].ToString()</p>
+        </div>
+    }
+    <h4>Order View</h4>
+    <hr />
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StatusOrder)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StatusOrder)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StatusShip)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StatusShip)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderTotal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderTotal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderCreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderCreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderPlacedDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderPlacedDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderCustomerId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderCustomerId)
+            </dd>
+        </dl>
+        <div>
+
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <form method="post" asp-area="maggiemcard" asp-controller="ShowPost" asp-action="ItemQuantity">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Items[i].ItemPrice)
+
+                            <label></label>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Items[i].ItemPrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Items[i].ItemProduct.ProductPrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Items[i].ItemProduct.ProductPrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Items[i].ItemProduct.ProductImagePath)
+                        </dt>
+                        <dd>
+                            <div>
+                                <img src="~/images/ImageProduct/@Html.DisplayFor(model => model.Items[i].ItemProduct.ProductImagePath)" class="img-fluid img-thumbnail">
+                            </div>
+                        </dd>
+                        <dt>
+                            <label>Delete Item</label>
+                        </dt>
+                        <dd>
+                            <a asp-controller="ShowPost" asp-action="DeleteItem" asp-route-id="@Model.Items[i].Id" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Items[i].ItemProductQuantity)
+                        </dt>
+
+                        <dd>
+
+                            <input name="quantity" asp-for="Items[i].ItemProductQuantity" value="@Model.Items[i].ItemProductQuantity">
+                            <input name="ItemId" type="hidden" value="@Model.Items[i].Id" asp-for="Items[i].ItemProductQuantity" />
+                            <button class="btn btn-primary" type="submit">Save</button>
+
+
+                        </dd>
+                    </dl>
+                </form>
+            }
+            <form asp-area="" asp-controller="Stripe" asp-action="Charge" method="POST">
+                <article>
+                    <label>Amount: £@Model.OrderTotal</label>
+                </article>
+                <script src="//checkout.stripe.com/v2/checkout.js"
+                        class="stripe-button"
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-locale="auto"
+                        data-currency="GBP"
+                        data-description="Sample Charge"
+                        data-amount='@Html.Raw(Model.OrderTotal.Replace(".",""))'>
+                </script>
+            </form>
+
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>

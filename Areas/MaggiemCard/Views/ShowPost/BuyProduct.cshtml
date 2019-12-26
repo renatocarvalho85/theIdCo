@@ -1,0 +1,108 @@
+﻿@model PortalMaggieCard.Areas.MaggiemCard.Models.OrderView
+
+@{
+    ViewData["Title"] = "BuyProduct";
+}
+
+<h2>Buy Product</h2>
+
+<div>
+    <h4>Order View</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StatusOrder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusShip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StatusShip)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderCreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPlacedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderPlacedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCustomerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderCustomerId)
+        </dd>
+    </dl>
+    <div>
+        @foreach (var item in Model.Items)
+        {
+            <form method="post" asp-area="maggiemcard" asp-controller="ShowPost" asp-action="ItemQuantity">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => item.ItemPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => item.ItemPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.ItemProduct.ProductPrice)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => item.ItemProduct.ProductPrice)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.ItemProduct.ProductImagePath)
+                    </dt>
+                    <dd>
+                        <div>
+                            <img src="~/images/ImageProduct/@Html.DisplayFor(model => item.ItemProduct.ProductImagePath)" class="img-fluid img-thumbnail">
+                        </div>
+                    </dd>
+                    <dt>
+                        <label>Delete Item</label>
+                    </dt>
+                    <dd>
+                        <a asp-controller="ShowPost" asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => item.ItemProductQuantity)
+                    </dt>
+
+                    <dd>
+
+                        <input name="quantity" asp-for="@item.ItemProductQuantity" value="@item.ItemProductQuantity">
+                        <input name="ItemId" type="hidden" value="@item.Id" asp-for="@item.ItemProductQuantity" />
+                        <button class="btn btn-primary" type="submit">Save</button>
+
+
+                    </dd>
+                </dl>
+              
+            </form>
+            }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

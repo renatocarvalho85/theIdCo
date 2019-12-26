@@ -1,0 +1,74 @@
+﻿@model PortalMaggieCard.Models.Product
+
+@{
+    ViewData["Title"] = "ShowProductDetails";
+}
+
+<h2>Show Product Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="form-group">
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.ProductImagePath)
+        </div>
+        <div class="thumbnail">
+            <img src="/images/ImageProduct/@Model.ProductImagePath" class="img-fluid img-thumbnail" />
+        </div>
+    </div>
+    <dl class="dl-horizontal">
+
+        @*<dt class="display-label">
+                @Html.DisplayNameFor(model => model.ProductImagePath)
+            </dt>
+            <dd class="thumbnail">
+                <img src="/images/ImageProduct/@Model.ProductImagePath" class="img-fluid img-thumbnail" />
+            </dd>*@
+        <dt>
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.id)
+            </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductCod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails)
+        </dd>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>*@
+    </dl>
+    @*<div class="form-group">
+        @Html.DisplayNameFor(model => model.ItemOrderView.ItemProductQuantity)
+        <input asp-for="@Model.ItemOrderView.ItemProductQuantity" value="1" class="form-control" />
+        <span asp-validation-for="@Model.ItemOrderView.ItemProductQuantity" class="text-danger"></span>
+    </div>*@
+</div>
+<div>
+    @Html.ActionLink("Buy Product", "BuyProduct", new { id = Model.id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
