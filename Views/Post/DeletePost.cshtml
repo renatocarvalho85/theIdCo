@@ -1,0 +1,62 @@
+﻿@model PortalMaggieCard.Models.PostView
+
+@{
+    ViewData["Title"] = "DeletePost";
+}
+
+<h2>Delete Post</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Post View</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.PostTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostSubTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostSubTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostDetails)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PostCategoriesView.PostCategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostCategoriesView.PostCategoryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductsView.ProductName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductsView.ProductName)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeletePost">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

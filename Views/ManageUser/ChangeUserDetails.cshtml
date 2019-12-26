@@ -1,0 +1,61 @@
+﻿@model PortalMaggieCard.Models.ManageUserView
+
+<h4>Edit User Perfil</h4>
+<hr />
+@if (TempData["Success"] != null)
+{
+<div class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <p><strong>Success: </strong>@TempData["Success"].ToString()</p>
+</div>
+
+}
+@if(TempData["Fail"] != null)
+{
+<div class=" alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <p><strong>Fail:</strong> @TempData["Fail"].ToString()</p>
+</div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeUserDetails">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsEmailConfirmrd" /> @Html.DisplayNameFor(model => model.IsEmailConfirmrd)
+                    </label>
+                </div>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" disabled/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="StatusMeessage" class="control-label"></label>
+                <input asp-for="StatusMeessage" class="form-control" />
+                <span asp-validation-for="StatusMeessage" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

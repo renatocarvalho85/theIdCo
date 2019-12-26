@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PortalMaggieCard.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        <p><strong>Success:</strong> @TempData["Success"].ToString()</p>
+    </div>
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="CreateProduct">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImagePath)
+            </th>
+            <th>
+                @Html.DisplayName("Categories")
+                @*@Html.DisplayNameFor(model => model.Category.ProductCategoryName)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductImageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductImagePath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.ProductCategoryName)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Update Product", "UpdateProduct", new { id = item.id })
+                    @Html.ActionLink("Product Details", "ProductDetails", new {  id=item.id }) |
+                    @Html.ActionLink("Delete Product", "DeleteProduct", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    
+}
+

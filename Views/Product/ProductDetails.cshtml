@@ -1,0 +1,56 @@
+﻿@model PortalMaggieCard.Models.Product
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+<h2>ProductDetails</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductCod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.ProductCategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.ProductCategoryName)
+        </dd>
+    </dl>
+    <div class="form-group">
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.ProductImagePath)
+        </div>
+        <div class="thumbnail">
+            <img src="/images/ImageProduct/@Model.ProductImagePath" class="img-fluid img-thumbnail" />
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

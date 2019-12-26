@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PortalMaggieCard.Models.CustomerView>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        <p><strong>Success:</strong> @TempData["Success"].ToString()</p>
+    </div>
+}
+@if (TempData["Fail"] != null)
+{
+    <div class="alert alert-danger">
+        <p><strong>Fail:</strong> @TempData["Fail"].ToString()</p>
+    </div>
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="CreateCustomer">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPassword)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPassword)
+                </td>
+                <td>
+                    @Html.ActionLink("Update Customer", "UpdateCustomer", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete Customer", "DeleteCustomer", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
