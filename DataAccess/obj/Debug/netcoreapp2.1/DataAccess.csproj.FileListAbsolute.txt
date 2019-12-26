@@ -1,0 +1,8 @@
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.deps.json
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.dll
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.pdb
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfo.cs
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.dll
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.pdb
+C:\Users\renat\source\repos\MaggiemCard\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
